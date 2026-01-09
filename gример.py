@@ -46,7 +46,7 @@ cities = {
         "lon": 139.6917,
         "area": "2194 км²",
         "population": "14 млн",
-        "photo": [
+        "photos": [
             "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg/800px-Skyscrapers_of_Shinjuku_2009_January.jpg"
         ]
     },
@@ -56,7 +56,7 @@ cities = {
         "lon": 12.4964,
         "area": "1285 км²",
         "population": "2.8 млн",
-        "photo": [
+        "photos": [
             "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Colosseum_in_Rome%2C_Italy_-_April_2007.jpg/800px-Colosseum_in_Rome%2C_Italy_-_April_2007.jpg"
         ]
     },
@@ -66,7 +66,7 @@ cities = {
         "lon": -74.0060,
         "area": "783 км²",
         "population": "8.4 млн",
-        "photo": [
+        "photos": [
             "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg/800px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg"
         ]
     }
@@ -345,3 +345,4 @@ def handle_unknown(message):
 if __name__ == "__main__":
     print("Бот запущен...")
     bot.polling(non_stop=True)
+
