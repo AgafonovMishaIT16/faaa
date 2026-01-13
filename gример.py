@@ -232,7 +232,7 @@ def info(message):
 @bot.message_handler(func=lambda m: m.text == "Фото")
 def send_photos(message):
     """
-    Отправляет фотографии выбранного города по URL.
+    Отправляет фотографии выбранного города с указанием URL.
     """
     city = get_city_from_user(message.chat.id)
     if not city:
@@ -245,17 +245,21 @@ def send_photos(message):
     success_count = 0
     for url in cities[city]["photos"]:
         try:
-            # Отправляем URL напрямую в Telegram
-            bot.send_photo(message.chat.id, url)
+            bot.send_photo(
+                message.chat.id,
+                url,
+                caption=f"🌆 {city}\n🔗 {url}"
+            )
             success_count += 1
-        except Exception as e:
-            # Если прямая отправка не сработала, пробуем загрузить и отправить
+        except Exception:
             try:
-                response = requests.get(url, timeout=10, headers={
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-                })
+                response = requests.get(url, timeout=10)
                 if response.status_code == 200:
-                    bot.send_photo(message.chat.id, response.content)
+                    bot.send_photo(
+                        message.chat.id,
+                        response.content,
+                        caption=f"🌆 {city}\n🔗 {url}"
+                    )
                     success_count += 1
             except Exception:
                 pass
@@ -317,7 +321,9 @@ def reply_photo(message):
     """
     Реакция на фото пользователя случайной фразой.
     """
-    bot.send_message(message.chat.id, random.choice(photo_replies))
+    replies = random.sample(photo_replies, k=3)
+    text = "\n".join(replies)
+    bot.send_message(message.chat.id, text)
 
 
 # ================== ОБРАБОТКА НЕИЗВЕСТНЫХ СООБЩЕНИЙ ==================
@@ -345,4 +351,3 @@ def handle_unknown(message):
 if __name__ == "__main__":
     print("Бот запущен...")
     bot.polling(non_stop=True)
-
