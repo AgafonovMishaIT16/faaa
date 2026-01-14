@@ -84,7 +84,7 @@ photo_replies = [
 user_city = {}
 
 
-# ================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==================
+# ================== ФУНКЦИИ ==================
 
 def get_city_from_user(chat_id):
     """
@@ -351,3 +351,4 @@ def handle_unknown(message):
 if __name__ == "__main__":
     print("Бот запущен...")
     bot.polling(non_stop=True)
+
